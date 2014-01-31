@@ -143,7 +143,6 @@ public class MainActivity extends FragmentActivity  {
 		// Set the format for latitude and longitude
 		mLatLngFormat = new DecimalFormat(latLngPattern);
 
-		// Localize the format
 		mLatLngFormat.applyLocalizedPattern(mLatLngFormat.toLocalizedPattern());
 
 		// Set the pattern for the radius format
@@ -218,13 +217,22 @@ public class MainActivity extends FragmentActivity  {
 
 					@Override
 					public void onMapLongClick(LatLng point) {
-						mLatitude1.setText(mLatLngFormat.format((int) point.latitude));
-						mLongitude1.setText(mLatLngFormat.format((int) point.longitude));
+						if (mLatitude1.getText().toString().equals("")) {
+							mLatitude1.setText(mLatLngFormat.format((int) point.latitude));
+							mLongitude1.setText(mLatLngFormat.format((int) point.longitude));
+							mRadius1.setText("100");
+						}else{
+							mLatitude2.setText(mLatLngFormat.format((int) point.latitude));
+							mLongitude2.setText(mLatLngFormat.format((int) point.longitude));
+							mRadius2.setText("100");
+						}
+						
 
 					}
 				});
 			}
 		}
+		/*
 		if (mMap2 == null) {
 			mMap2 = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map2))
 					.getMap();
@@ -238,9 +246,11 @@ public class MainActivity extends FragmentActivity  {
 						mLongitude2.setText(mLatLngFormat.format(point.longitude),TextView.BufferType.EDITABLE);
 
 					}
-				});            }
-		}
+				});            
+				}
+		} */
 	}
+	
 	/*
 	 * Handle results returned to this Activity by other Activities started with
 	 * startActivityForResult(). In particular, the method onConnectionFailed() in

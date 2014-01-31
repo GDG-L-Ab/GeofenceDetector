@@ -15,215 +15,170 @@
   limitations under the License.
 -->
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    tools:context=".MainActivity" >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent" 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/label_geofence_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/geofence1"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/label_latitude_1"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/value_latitude_1"
-            android:layout_below="@id/label_geofence_1"
-            android:text="@string/latitude" />
-
-        <EditText
-            android:id="@+id/value_latitude_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/value_longitude_1"
-            android:layout_below="@id/label_geofence_1"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/label_latitude_1"
-            android:inputType="numberDecimal|numberSigned" />
-
-        <TextView
-            android:id="@+id/label_longitude_1"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/value_longitude_1"
-            android:layout_below="@id/label_latitude_1"
-            android:text="@string/longitude" />
 
         <EditText
             android:id="@+id/value_longitude_1"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/register"
-            android:layout_below="@id/value_latitude_1"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/label_longitude_1"
+            android:layout_alignBaseline="@+id/value_latitude_1"
+            android:layout_alignBottom="@+id/value_latitude_1"
+            android:layout_alignLeft="@+id/label_longitude_1"
+            android:ems="10"
             android:inputType="numberDecimal|numberSigned" />
 
         <TextView
             android:id="@+id/label_radius_1"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/value_radius_1"
-            android:layout_below="@id/label_longitude_1"
+            android:layout_alignBaseline="@+id/label_longitude_1"
+            android:layout_alignBottom="@+id/label_longitude_1"
+            android:layout_alignRight="@+id/unregister_by_pending_intent"
             android:text="@string/radius" />
 
         <EditText
             android:id="@+id/value_radius_1"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/value_longitude_1"
-            android:layout_below="@id/value_longitude_1"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/label_radius_1"
+            android:layout_alignBaseline="@+id/value_longitude_1"
+            android:layout_alignBottom="@+id/value_longitude_1"
+            android:layout_alignParentRight="true"
+            android:ems="10"
             android:inputType="numberDecimal" />
 
-        <!-- Geofence 2 -->
-
-        <TextView
-            android:id="@+id/label_geofence_2"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/value_longitude_2"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/value_radius_1"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/geofence2"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/label_latitude_2"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignTop="@+id/value_latitude_2"
-            android:layout_below="@id/label_geofence_2"
-            android:text="@string/latitude" />
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="numberDecimal|numberSigned" />
+
+        <EditText
+            android:id="@+id/value_radius_2"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/value_longitude_2"
+            android:layout_alignBottom="@+id/value_longitude_2"
+            android:layout_alignParentRight="true"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <fragment
+            android:id="@+id/map1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/label_radius_1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            class="com.google.android.gms.maps.SupportMapFragment" />
+
+        <Button
+            android:id="@+id/unregister_geofence2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:onClick="onUnregisterGeofence2Clicked"
+            android:text="@string/unregister_geofence2"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/unregister_geofence1"
+            android:layout_alignParentLeft="true"
+            android:onClick="onRegisterClicked"
+            android:text="@string/register_geofence"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/unregister_by_pending_intent"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/unregister_geofence2"
+            android:layout_alignParentRight="true"
+            android:onClick="onUnregisterByPendingIntentClicked"
+            android:text="@string/unregister_geofence"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/unregister_geofence1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:onClick="onUnregisterGeofence1Clicked"
+            android:text="@string/unregister_geofence1"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
             android:id="@+id/value_latitude_2"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/value_longitude_2"
-            android:layout_below="@id/label_geofence_2"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/label_latitude_2"
+            android:layout_above="@+id/register"
+            android:layout_alignParentLeft="true"
+            android:ems="10"
             android:inputType="numberDecimal|numberSigned" />
 
         <TextView
             android:id="@+id/label_longitude_2"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/value_longitude_2"
-            android:layout_below="@id/label_latitude_2"
+            android:layout_above="@+id/value_longitude_2"
+            android:layout_alignRight="@+id/value_longitude_2"
             android:text="@string/longitude" />
 
-        <EditText
-            android:id="@+id/value_longitude_2"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/label_latitude_2"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/register"
-            android:layout_below="@id/value_latitude_2"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/label_longitude_2"
-            android:inputType="numberDecimal|numberSigned" />
+            android:layout_above="@+id/value_latitude_2"
+            android:layout_alignRight="@+id/value_latitude_2"
+            android:text="@string/latitude" />
 
         <TextView
             android:id="@+id/label_radius_2"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/value_radius_2"
-            android:layout_below="@id/label_longitude_2"
+            android:layout_above="@+id/value_radius_2"
+            android:layout_alignParentRight="true"
             android:text="@string/radius" />
 
         <EditText
-            android:id="@+id/value_radius_2"
-            android:layout_width="wrap_content"
+            android:id="@+id/value_latitude_1"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/value_longitude_2"
-            android:layout_below="@id/value_longitude_2"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/label_radius_2"
-            android:inputType="numberDecimal" />
+            android:layout_above="@+id/label_latitude_2"
+            android:layout_alignParentLeft="true"
+            android:ems="10"
+            android:inputType="numberDecimal|numberSigned" />
 
-        <!-- Register and unregister geofences buttons. -->
-
-        <Button
-            android:id="@+id/register"
-            android:layout_width="150dp"
+        <TextView
+            android:id="@+id/label_latitude_1"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/unregister_by_pending_intent"
-            android:layout_below="@id/value_radius_2"
-            android:layout_marginTop="20dp"
-            android:onClick="onRegisterClicked"
-            android:text="@string/register_geofence" />
+            android:layout_above="@+id/value_latitude_1"
+            android:layout_alignLeft="@+id/label_latitude_2"
+            android:text="@string/latitude" />
 
-        <Button
-            android:id="@+id/unregister_by_pending_intent"
-            android:layout_width="150dp"
+        <TextView
+            android:id="@+id/label_longitude_1"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/value_radius_2"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@id/register"
-            android:onClick="onUnregisterByPendingIntentClicked"
-            android:text="@string/unregister_geofence" />
-
-        <Button
-            android:id="@+id/unregister_geofence1"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/unregister_geofence2"
-            android:layout_below="@id/register"
-            android:layout_marginTop="10dp"
-            android:onClick="onUnregisterGeofence1Clicked"
-            android:text="@string/unregister_geofence1" />
-
-        <Button
-            android:id="@+id/unregister_geofence2"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/unregister_by_pending_intent"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/unregister_geofence1"
-            android:onClick="onUnregisterGeofence2Clicked"
-            android:text="@string/unregister_geofence2" />
-
-        <fragment
-            android:id="@+id/map1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/label_geofence_2"
-            android:layout_alignLeft="@+id/unregister_by_pending_intent"
-            android:layout_below="@+id/label_geofence_1"
-            class="com.google.android.gms.maps.SupportMapFragment"
-            />
-
-        <fragment
-            android:id="@+id/map2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/register"
-            android:layout_alignTop="@+id/value_latitude_2"
-            android:layout_toRightOf="@+id/register"
-            class="com.google.android.gms.maps.SupportMapFragment" />
+            android:layout_alignBaseline="@+id/label_latitude_1"
+            android:layout_alignBottom="@+id/label_latitude_1"
+            android:layout_alignRight="@+id/label_longitude_2"
+            android:text="@string/longitude" />
 
     </RelativeLayout>
 
-</ScrollView>
