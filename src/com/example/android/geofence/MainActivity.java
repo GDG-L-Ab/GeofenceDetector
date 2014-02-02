@@ -51,7 +51,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -200,7 +204,13 @@ public class MainActivity extends FragmentActivity  {
 		mLongitude2 = (EditText) findViewById(R.id.value_longitude_2);
 		mRadius2 = (EditText) findViewById(R.id.value_radius_2);
 
+		mLatitude1.setText(GeofenceUtils.EMPTY_STRING);
+		mLongitude1.setText(GeofenceUtils.EMPTY_STRING);
+		mRadius1.setText(GeofenceUtils.EMPTY_STRING);
 
+		mLatitude2.setText(GeofenceUtils.EMPTY_STRING);
+		mLongitude2.setText(GeofenceUtils.EMPTY_STRING);
+		mRadius2.setText(GeofenceUtils.EMPTY_STRING);
 
 		setUpMapIfNeeded();
 
@@ -226,6 +236,9 @@ public class MainActivity extends FragmentActivity  {
 		mLatitude2 = (EditText) findViewById(R.id.value_latitude_2);
 		mLongitude2 = (EditText) findViewById(R.id.value_longitude_2);
 		mRadius2 = (EditText) findViewById(R.id.value_radius_2);
+		
+
+
 		if (mMap1 == null) {
 			mMap1 = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map1))
 					.getMap();
@@ -239,10 +252,23 @@ public class MainActivity extends FragmentActivity  {
 							mLatitude1.setText(mLatLngFormat.format((int) point.latitude));
 							mLongitude1.setText(mLatLngFormat.format((int) point.longitude));
 							mRadius1.setText("100");
+							mMap1.addMarker(new MarkerOptions().position(new LatLng(point.latitude,  point.longitude)).icon(BitmapDescriptorFactory.fromResource(R.drawable.gladiatordroid3)));
+							Circle circle = mMap1.addCircle(new CircleOptions()
+						     .center(new LatLng(point.latitude,  point.longitude))
+						     .radius(100)
+						     .strokeColor(Color.RED)
+						     .fillColor(Color.YELLOW));
+						 
 						}else{
 							mLatitude2.setText(mLatLngFormat.format((int) point.latitude));
 							mLongitude2.setText(mLatLngFormat.format((int) point.longitude));
 							mRadius2.setText("100");
+							mMap1.addMarker(new MarkerOptions().position(new LatLng(point.latitude,  point.longitude)).icon(BitmapDescriptorFactory.fromResource(R.drawable.gladiatordroid3)));
+							Circle circle = mMap1.addCircle(new CircleOptions()
+						     .center(new LatLng(point.latitude,  point.longitude))
+						     .radius(100)
+						     .strokeColor(Color.RED)
+						     .fillColor(Color.GRAY));
 						}
 
 
@@ -423,6 +449,7 @@ public class MainActivity extends FragmentActivity  {
 			mLatitude2.setText(GeofenceUtils.EMPTY_STRING);
 			mLongitude2.setText(GeofenceUtils.EMPTY_STRING);
 			mRadius2.setText(GeofenceUtils.EMPTY_STRING);
+			mMap1.clear();
 			return true;
 
 			// Remove all geofences from storage
