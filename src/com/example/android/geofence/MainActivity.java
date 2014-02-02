@@ -23,6 +23,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -43,6 +46,8 @@ import com.example.android.geofence.GeofenceUtils.REQUEST_TYPE;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.Geofence;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -199,6 +204,19 @@ public class MainActivity extends FragmentActivity  {
 
 		setUpMapIfNeeded();
 
+		Criteria criteria = new Criteria();
+		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		String provider = locationManager.getBestProvider(criteria, false);
+		Location location = locationManager.getLastKnownLocation(provider);
+		double lat =  location.getLatitude();
+		double lng = location.getLongitude();
+		LatLng coordinate = new LatLng(lat, lng);
+		CameraUpdate center=
+				CameraUpdateFactory.newLatLng(coordinate);
+		CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
+
+		mMap1.moveCamera(center);
+		mMap1.animateCamera(zoom);
 	}
 
 	private void setUpMapIfNeeded() {
@@ -226,7 +244,7 @@ public class MainActivity extends FragmentActivity  {
 							mLongitude2.setText(mLatLngFormat.format((int) point.longitude));
 							mRadius2.setText("100");
 						}
-						
+
 
 					}
 				});
@@ -250,7 +268,7 @@ public class MainActivity extends FragmentActivity  {
 				}
 		} */
 	}
-	
+
 	/*
 	 * Handle results returned to this Activity by other Activities started with
 	 * startActivityForResult(). In particular, the method onConnectionFailed() in
@@ -997,4 +1015,6 @@ public class MainActivity extends FragmentActivity  {
 			return mDialog;
 		}
 	}
+
+
 }

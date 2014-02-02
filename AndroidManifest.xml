@@ -59,6 +59,8 @@
          certificate which you will use to sign this application.
          See: https://developers.google.com/maps/documentation/android/start
          for instructions on how to get your own key.
+         Prod key
+         AIzaSyDv8aL6eOxxkAzmhrZM5eZlhboQsh70Rvk
         -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
